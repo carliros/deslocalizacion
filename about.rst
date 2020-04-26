@@ -1,17 +1,13 @@
 ---
 title: About
 ---
-Nullam imperdiet sodales orci vitae molestie. Nunc quam orci, pharetra a
-rhoncus vitae, eleifend id felis. Suspendisse potenti. Etiam vitae urna orci.
-Quisque pellentesque dignissim felis, egestas tempus urna luctus vitae. In hac
-habitasse platea dictumst. Morbi fringilla mattis odio, et mattis tellus
-accumsan vitae.
 
-1. Amamus Unicode 碁
-2. Interdum nex magna.
+Soy Carlos Gómez, trabajo como ingeniero de Software y hago estudios de
+Teología Interdisciplinaria. Estoy en la etapa de hacer mi trabajo final
+de investigación y he decidido hacerlo en el área de la deslocalización,
+más conocido como outsourcing en inglés, en el área de la industria del
+software. Mi objetivo es mirar este tema desde una pespectiva social,
+económica, trabajo o laboral y ético teológico.
 
-Vivamus eget mauris sit amet nulla laoreet lobortis. Nulla in diam elementum
-risus convallis commodo. Cras vehicula varius dui vitae facilisis. Proin
-elementum libero eget leo aliquet quis euismod orci vestibulum. Duis rhoncus
-lorem consequat tellus vestibulum aliquam. Quisque orci orci, malesuada porta
-blandit et, interdum nec magna.
+Este blog es como una bitácota sobre mis reflexiones, descubrimientos,
+avances y demás cosas interesantes sobre mi recorrido en esta investigación.

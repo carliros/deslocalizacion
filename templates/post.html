@@ -1,8 +1,11 @@
 <article>
     <section class="header">
-        Posted on $date$
+        Publicado el $date$
+        $if(updatedOn)$
+           (actualizado el $updatedOn$)
+        $endif$
         $if(author)$
-            by $author$
+            por $author$
         $endif$
     </section>
     <section>
