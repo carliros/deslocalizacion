@@ -58,7 +58,7 @@ main =
                 posts <- recentFirst =<< loadAll "posts/*"
                 let indexCtx =
                         listField "posts" postCtx (return posts) `mappend`
-                        constField "title" "Home"                `mappend`
+                        constField "title" "Bienvenida"          `mappend`
                         buildDateCtx stringUtcTime defaultContext
 
                 getResourceBody
