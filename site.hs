@@ -1,10 +1,12 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
+import           Control.Monad (liftM)
 import           Hakyll
 import           Data.Time.LocalTime (getZonedTime)
 import           Data.Time.Format (formatTime, defaultTimeLocale)
-
+import           Text.Pandoc.Options
+import           Text.Pandoc.Highlighting (tango)
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -12,6 +14,10 @@ main =
   do utcTime <- getZonedTime
      let stringUtcTime = formatTime defaultTimeLocale "%Y/%m/%d %H:%M" utcTime
      hakyll $ do
+        match "biblio/*.bib" $ compile biblioCompiler
+
+        match "biblio/*.csl" $ compile cslCompiler
+
         match "images/*" $ do
             route   idRoute
             compile copyFileCompiler
@@ -32,7 +38,7 @@ main =
             route $ setExtension "html"
             compile $ do
               let postsCtx = buildDateCtx stringUtcTime postCtx
-              pandocCompiler
+              customBiblioCompiler
                   >>= loadAndApplyTemplate "templates/post.html"    postsCtx
                   >>= loadAndApplyTemplate "templates/default.html" postsCtx
                   >>= relativizeUrls
@@ -79,3 +85,20 @@ buildDateCtx :: String -> Context String -> Context String
 buildDateCtx stringUtcTime baseCtx =
     constField "currentUTCDate" stringUtcTime `mappend`
     baseCtx
+
+chicagoCsl = "biblio/chicago-fullnote-bibliography-with-ibid.csl"
+mainBib = "biblio/main.bib"
+customBiblioCompiler :: Compiler (Item String)
+customBiblioCompiler = do
+    csl <- load $ fromFilePath chicagoCsl
+    bib <- load $ fromFilePath mainBib
+    liftM (writePandocWith wopt)
+            (getResourceBody >>= readPandocBiblio ropt csl bib)
+  where wopt = defaultHakyllWriterOptions
+                  {   -- enable tango format highlight
+                      writerHighlightStyle = Just tango
+                  }
+        ropt = defaultHakyllReaderOptions
+                  {   -- enable citation rendering
+                      readerExtensions = enableExtension Ext_citations $ readerExtensions defaultHakyllReaderOptions
+                  }
