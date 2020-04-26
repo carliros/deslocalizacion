@@ -1,0 +1,9 @@
+.stack-work/
+cabal.config
+.idea
+_cache
+*.iml
+out
+.DS_Store
+dist-newstyle/
+
